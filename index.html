@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Metadatos -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Red Social de Rentas en Comunidad" />
+    <meta name="keywords" content="HTML, CSS, React, TypeScript, MaterialUI" />
+    <!-- FavIcon -->
+    <link rel="icon" type="image/x-icon" href="./src/assets/icon.png" />
+    <!-- Title -->
+    <title id="pageTitle"></title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module">
+      // Import the initI18n function directly
+      import { initI18n } from "./src/config/i18next.config.ts";
+
+      // Initialize i18n immediately and make it globally accessible
+      initI18n().then((i18nInstance) => {
+        window.i18nInstance = i18nInstance;
+
+        // Set the translated title
+        document.getElementById("pageTitle").innerText =
+          window.i18nInstance.t("documentTitle");
+
+        // Import the main application after i18n is initialized
+        import("/src/main.tsx");
+      });
+    </script>
+  </body>
+</html>
